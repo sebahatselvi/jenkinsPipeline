@@ -1,19 +1,11 @@
 pipeline{
     agent any  
-    environment{
-    PATH= "/usr/local/Cellar/maven/3.6.2/libexec/bin/mvn:$PATH"}
+   
     stages{
         stage("Git Checkout"){
             steps{
                 git credentialsId: 'github', url: 'https://github.com/sebahatselvi/jenkinsPipeline'
             }
-        }
-        
-        stage("Maven Build"){
-        step{
-        sh "mvn clean package"
-        }
-        }
-        
+        } 
     }
 }
