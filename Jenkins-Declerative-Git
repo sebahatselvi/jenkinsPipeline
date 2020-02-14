@@ -1,9 +1,5 @@
 pipeline{
-    agent any
-   environment{
-    PATH="/usr/local/Cellar/maven/3.6.2/libexec/bin:$PATH"
-    }
-    
+    agent any  
     stages{
         stage("Git Checkout"){
             steps{
@@ -13,7 +9,7 @@ pipeline{
         
         stage("Maven Build"){
         step{
-          sh "mvn clean package"
+          maven_invoker invokerBuildDir: 'target/it', reportsFilenamePattern: 'target/invoker-reports/BUILD*.xml'
         }
         }
         
